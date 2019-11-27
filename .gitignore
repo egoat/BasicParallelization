@@ -1,5 +1,8 @@
 a.out
 .vscode/
+.vs/
+*.exe
+*.obj
 parallel_non
 parallel_OpenMP
 parallel_MPI

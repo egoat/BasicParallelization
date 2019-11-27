@@ -1,0 +1,6 @@
+a.out
+.vscode/
+parallel_non
+parallel_OpenMP
+parallel_MPI
+parallel_GPU

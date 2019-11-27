@@ -1,20 +1,30 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
-#include <time.h>
+//#include <omp.h>
+//#include <mpi.h>
 
 #include "config.c"
 
 // function to add the elements of two arrays
+// serial
+//
 void add(int n, float *x, float *y)
 {
-  for (int i = 0; i < n; i++)
-      y[i] = x[i] + y[i];
+    //
+    //
+    for (int i = 0; i < n; i++)
+    {
+        y[i] = x[i] + y[i];
+    }
 }
 
 int main()
 {
+
+    //
+    //
+    //
 
     x = calloc(N,sizeof(*x));
     y = calloc(N,sizeof(*y));
@@ -45,9 +55,7 @@ int main()
     float maxError = 0.0;
     for (int i = 0; i < N; i++)
     maxError = fmax(maxError, fabs(y[i]-(2.0+rep)));
-    printf("Max error: %f\n",maxError);
-    printf("CPU time used: %f\n\n",cpu_time_used);
-    //std::cout << "Max error: " << maxError << std::endl;
+    printf("1\t%f\t%f\n",cpu_time_used,maxError);
 
     // Free memory
     free(x);

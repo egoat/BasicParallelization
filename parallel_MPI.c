@@ -1,14 +1,14 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
-#include <omp.h>
+//#include <omp.h>
 #include <mpi.h>
-#include <time.h>
 
 #include "config.c"
 
 // function to add the elements of two arrays
+// MPI parallel
+//
 void add(float *x, float *y)
 {
     int i=0;

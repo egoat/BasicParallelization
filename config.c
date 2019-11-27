@@ -1,11 +1,14 @@
-#include <time.h>
-#include<sys/time.h>
+#ifdef _WIN32
+    #include <windows.h>
+#else //__linux__
+    #include<sys/time.h>
+#endif
 
-#define OMP_THREADS     4
-#define MPI_THREADS     2
+//#define OMP_THREADS     12
+//#define MPI_THREADS     2
 
 int N = 1<<20;  // 1M elements (20)
-int rep = 1<<5; // do 2^5 repeats
+int rep = 1<<7; // do 2^5 repeats
 
 
 //clock_t start, end;
@@ -17,9 +20,13 @@ float *y;
 
 
 long long timeInMilliseconds(void) {
-    struct timeval tv;
+    #ifdef _WIN32
+        return GetTickCount();
+    #else //__linux__
+        struct timeval tv;
 
-    gettimeofday(&tv,NULL);
-    return (((long long)tv.tv_sec)*1000)+(tv.tv_usec/1000);
+        gettimeofday(&tv,NULL);
+        return (((long long)tv.tv_sec)*1000)+(tv.tv_usec/1000);
+    #endif  
 }
 

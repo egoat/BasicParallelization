@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # serial
-#make serial
-#gcc -O3 -o parallel_OpenMP parallel_OpenMP.c -lm
-#./parallel_non
+make serial
+gcc -O3 -o parallel_OpenMP parallel_OpenMP.c -lm
+./parallel_non
 
 # openMP
 #make openMP

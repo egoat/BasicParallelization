@@ -1,4 +1,11 @@
 #include <stdio.h>
+//
+#ifdef _WIN32
+    #include <windows.h>
+#else //__linux__
+    #include <unistd.h>
+#endif
+//
 #include <stdlib.h>
 #include <math.h>
 //#include <omp.h>
@@ -19,15 +26,19 @@ void add(float *x, float *y)
     }
 }
 
-int main()
+int main( int argc, char *argv[] )
 {
     int node;
+    double t1,t2;
 
-    MPI_Init();
+    MPI_Init( &argc, &argv );
     MPI_Comm_rank(MPI_COMM_WORLD, &node);
 
-    printf("Hello from Node %d\n",node);
-
+    t1 = MPI_Wtime();
+    sleep(2);
+    t2 = MPI_Wtime();
+    printf("Time of node %d: %f\n",node,(t2-t1));
+    
     // x = calloc(N,sizeof(*x));
     // y = calloc(N,sizeof(*y));
 
@@ -66,5 +77,7 @@ int main()
     // free(y);
 
     MPI_Finalize();
+
+    return 0;
 
 }

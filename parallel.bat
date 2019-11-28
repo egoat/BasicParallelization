@@ -12,7 +12,7 @@ parallel_non
 :: OpenMP
 echo   OpenMP
 set OMP_THREADS=1
-set OMP_THREADS_MAX=12
+set OMP_THREADS_MAX=8
 ::
 :LoopStart
 ::

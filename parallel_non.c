@@ -55,7 +55,7 @@ int main()
     float maxError = 0.0;
     for (int i = 0; i < N; i++)
     maxError = fmax(maxError, fabs(y[i]-(2.0+rep)));
-    printf("1\t%f\t%f\n",cpu_time_used,maxError);
+    printf("1:1\t%f\t%f\n",cpu_time_used,maxError);
 
     // Free memory
     free(x);

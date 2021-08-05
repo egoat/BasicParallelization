@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
 #include <omp.h>
@@ -40,7 +39,7 @@ int main()
     //=========================================================
     // Run kernel on 1M elements on the CPU
     //-------------------------------------
-    start = timeInMilliseconds();
+//    start = timeInMilliseconds();
     //----------
     //for (int i = 0; i<rep; i++)
     //{
@@ -49,11 +48,12 @@ int main()
         cudaDeviceSynchronize();
     //}
     //-----------
-    end = timeInMilliseconds();
+//    end = timeInMilliseconds();
     //-------------------------------------
     //=========================================================
 
-    cpu_time_used = ((double) (end-start));
+//    cpu_time_used = ((double) (end-start));
+    cpu_time_used = 0;
 
     // Check for errors (all values should be 3.0f)
     float maxError = 0.0;

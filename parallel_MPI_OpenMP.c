@@ -1,26 +1,17 @@
 #include <stdio.h>
-#include <unistd.h>
-//
-//#ifdef _WIN32
-//    #include <windows.h>
-//#else //__linux__
-//    #include <unistd.h>
-//#endif
-//
 #include <stdlib.h>
 #include <math.h>
-//#include <omp.h>
+#include <omp.h>
 #include <mpi.h>
 
 #include "config.c"
 
 // function to add the elements of two arrays
-// MPI parallel
+// MPI + OpenMP parallel
 //
 void add(int n, float *x, float *y)
 {
-    //
-    //
+    #pragma omp parallel for
     for (int i = 0; i < n; i++)
     {
         y[i] = x[i] + y[i];
@@ -115,7 +106,7 @@ void main()
         }
     }
 
-    if(rank==0) printf("%d:1\t%f\t%f\n",rank_total,cpu_time_used,maxError);
+    if(rank==0) printf("%d:%d\t%f\t%f\n",rank_total,omp_get_max_threads(),cpu_time_used,maxError);
 
     // Free memory
     free(x);

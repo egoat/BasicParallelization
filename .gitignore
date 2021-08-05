@@ -6,4 +6,5 @@ a.out
 parallel_non
 parallel_OpenMP
 parallel_MPI
+parallel_MPI_OpenMP
 parallel_GPU

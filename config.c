@@ -7,8 +7,8 @@
 //#define OMP_THREADS     12
 //#define MPI_THREADS     2
 
-int N = 1<<25;  // 1M elements (20)
-int rep = 1<<5; // do 2^5 repeats
+int N = 1<<25; //1<<25;  // 1M elements (20)
+int rep = 1<<0; //1<<5; // do 2^5 repeats
 
 
 //clock_t start, end;

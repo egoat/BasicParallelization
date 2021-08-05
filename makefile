@@ -1,8 +1,18 @@
+OPIMIZATIONFLAG = -O0
+
 # serial
 serial: parallel_non.c
-	gcc -O3 -o parallel_non parallel_non.c -lm
+	gcc $(OPIMIZATIONFLAG) -o parallel_non parallel_non.c -lm
 
 # openMP
 OMP_THREADS = 2
 openMP: parallel_OpenMP.c
-	gcc -O3 -fopenmp -o parallel_OpenMP parallel_OpenMP.c -lm -DOMP_THREADS=$(OMP_THREADS)
+	gcc $(OPIMIZATIONFLAG) -fopenmp -o parallel_OpenMP parallel_OpenMP.c -lm
+
+# MPI
+MPI: parallel_MPI.c
+	mpicc $(OPIMIZATIONFLAG) -o parallel_MPI parallel_MPI.c -lm
+
+# MPI + OpenMP
+MPI_openMP: parallel_MPI_OpenMP.c
+	mpicc $(OPIMIZATIONFLAG) -fopenmp -o parallel_MPI_OpenMP parallel_MPI_OpenMP.c -lm

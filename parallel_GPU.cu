@@ -1,3 +1,4 @@
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -12,9 +13,9 @@
 __global__
 void add(int n, float *x, float *y)
 {
-    int i=0;
-    //#pragma omp parallel for private(i) num_threads(4)
-    for (i = 0; i < n; i++)
+    int t = threadIdx.x;
+    int T = blockDim.x;
+    for (int i = t; i < n; i += T)
     {
         y[i] = x[i] + y[i];
     }
@@ -22,10 +23,6 @@ void add(int n, float *x, float *y)
 
 int main()
 {
-
-    //
-    //
-    //
     
     cudaMallocManaged(&x,N*sizeof(*x));
     cudaMallocManaged(&y,N*sizeof(*y));
@@ -39,21 +36,20 @@ int main()
     //=========================================================
     // Run kernel on 1M elements on the CPU
     //-------------------------------------
-//    start = timeInMilliseconds();
+    start = timeInMilliseconds();
     //----------
-    //for (int i = 0; i<rep; i++)
-    //{
-        //add(N, x, y);
-        add<<<1, 1>>>(N,x,y);
+    for (int i = 0; i<rep; i++)
+    {
+        add<<<1, 512>>>(N,x,y);
         cudaDeviceSynchronize();
-    //}
+    }
     //-----------
-//    end = timeInMilliseconds();
+    end = timeInMilliseconds();
     //-------------------------------------
     //=========================================================
 
-//    cpu_time_used = ((double) (end-start));
-    cpu_time_used = 0;
+    cpu_time_used = ((double) (end-start));
+//    cpu_time_used = 0;
 
     // Check for errors (all values should be 3.0f)
     float maxError = 0.0;

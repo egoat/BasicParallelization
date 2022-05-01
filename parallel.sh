@@ -30,7 +30,7 @@ while [ $MPI_RANK -le $MPI_RANK_MAX ]
 do
     ##mpicc -O0 -o parallel_MPI parallel_MPI.c -lm
     make MPI -s
-    mpirun --mca btl self,sm,tcp -np $MPI_RANK ./parallel_MPI
+    mpirun --mca btl self,vader,tcp -np $MPI_RANK ./parallel_MPI
     MPI_RANK=`expr $MPI_RANK + 1`
 done
 
@@ -48,7 +48,7 @@ do
         ##mpicc -O0 -fopenmp -o parallel_MPI_OpenMP parallel_MPI_OpenMP.c -lm -DOMP_THREADS=${OMP_THREADS}
         make MPI_openMP -s
         export OMP_NUM_THREADS=${OMP_THREADS}
-        mpirun --mca btl self,sm,tcp -np $MPI_RANK ./parallel_MPI_OpenMP
+        mpirun --mca btl self,vader,tcp -np $MPI_RANK ./parallel_MPI_OpenMP
         OMP_THREADS=`expr $OMP_THREADS + 1`
     done
     OMP_THREADS=1;
@@ -57,3 +57,6 @@ done
 
 
 # CUDA
+echo '  CUDA'
+make GPU -s
+./parallel_GPU

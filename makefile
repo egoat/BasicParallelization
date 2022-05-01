@@ -16,3 +16,7 @@ MPI: parallel_MPI.c
 # MPI + OpenMP
 MPI_openMP: parallel_MPI_OpenMP.c
 	mpicc $(OPIMIZATIONFLAG) -fopenmp -o parallel_MPI_OpenMP parallel_MPI_OpenMP.c -lm
+
+# CUDA
+GPU: parallel_GPU.cu
+	nvcc -o parallel_GPU parallel_GPU.cu

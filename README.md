@@ -8,7 +8,7 @@ This is the equivalent of a 'Hello World' for numerical code: Vector addition is
 - MPI + OpenMP
 - CUDA
 
-More detailed information can be found in [this blogpost]().
+More detailed information can be found in [this blogpost](https://blog.egoat.ch/2022/05/19/basic_parallelization.html).
 
 # Setup
 
